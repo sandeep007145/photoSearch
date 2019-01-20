@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   private collectionSub: Subscription;
   itemsPerPage: any = 40;
   pageNo: any = 1;
-  length: any = 300;
+  length: any = 100;
   collections = this.photosSerice.collections;
 
   constructor(

@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InterceptorService } from './interceptor/interceptor.service';
-import { NgProgressModule } from '@ngx-progressbar/core';
+// import { NgProgressModule } from '@ngx-progressbar/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgProgressModule.forRoot(),
+    // NgProgressModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

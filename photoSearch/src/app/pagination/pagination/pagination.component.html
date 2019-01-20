@@ -1,0 +1,46 @@
+<div class="row" *ngIf="shouldVisible">
+  <div class="col-sm-10">
+    <ul>
+      <li class="pagination" *ngIf="pages.length>0" [ngClass]="{disabled: paginationCtrls.first}">
+        <a (click)="goToFirstPage()">
+          &laquo; </a>
+      </li>
+      <li class="pagination" *ngIf="pages.length>0" [ngClass]="{disabled: paginationCtrls.prev}">
+        <a (click)="goToPreviousPage()">
+          &lt;</a>
+      </li>
+      <li class="pagination" *ngIf="activePageIndex > 5 && pages.length > 15">
+        <a class="disabled" href="" (click)="$event.preventDefault()">....</a>
+      </li>
+
+      <li class="pagination" [hidden]="activePageIndex - 3 > i || activePageIndex + 3 < i" *ngFor="let page of pages; let i = index">
+                <a (click)="sendPageNo(i)" [ngClass]="{active: activePageIndex === i}">{{page}}</a>
+            </li>
+
+      <li class="pagination" *ngIf="activePageIndex < pages.length - 5 && pages.length > 15">
+        <a class="disabled" href="" (click)="$event.preventDefault()">....</a>
+      </li>
+      <li class="pagination" *ngIf="pages.length>0" [ngClass]="{disabled: paginationCtrls.next}">
+        <a (click)="goToNextPage()">
+          &gt;</a>
+      </li>
+      <li class="pagination" *ngIf="pages.length>0" [ngClass]="{disabled: paginationCtrls.last}">
+        <a (click)="goToLastPage()">
+          &raquo;</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-2">
+    <div class="text-right">
+      <select class="btn btn-secondary" [(ngModel)]="perpage" (change)="sendPerPage()">
+        <option [ngValue]="15">15</option>
+        <!-- <option [selected]="perpage==10" [ngValue]="10">10</option> -->
+        <option [ngValue]="20">20</option>
+        <option [ngValue]="30">30</option>
+        <option [ngValue]="40">40</option>
+        <option [ngValue]="50">50</option>
+        <option [ngValue]="100">100</option>
+      </select>
+    </div>
+  </div>
+</div>

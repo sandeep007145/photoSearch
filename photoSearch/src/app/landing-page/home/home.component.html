@@ -11,38 +11,15 @@
         <h4 class="modal-title">Search Images</h4>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <h2>Image Gallery</h2>
-          <p>The .thumbnail class can be used to display an image gallery.</p>
-          <p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>
-          <p>Click on the images to enlarge them.</p>
+        <div class="containers">
+          <!-- <h2>Image Gallery</h2> -->
           <div class="row">
-            <div class="col-md-4">
+          <div class="col-md-4" *ngFor="let p of comingData">
               <div class="thumbnail">
-                <a href="/w3images/lights.jpg" target="_blank">
-                  <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
+                <a href="{{p.urls.small}}" target="_blank">
+                  <img src="{{p.urls.small}}" alt="{{p.user.username}}" style="width:100%">
                   <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <a href="/w3images/nature.jpg" target="_blank">
-                  <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
-                  <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <a href="/w3images/fjords.jpg" target="_blank">
-                  <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
-                  <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    <p>{{p.user.username}}.</p>
                   </div>
                 </a>
               </div>
@@ -52,6 +29,7 @@
         
       </div>
       <div class="modal-footer">
+          <app-pagination [count]="length" (pageNumber)="assignPageNo($event)" (recordsPerPage)="assignRecordsPerPage($event)"></app-pagination>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

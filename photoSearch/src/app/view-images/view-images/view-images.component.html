@@ -12,6 +12,11 @@
         </div>
       </div>
     </div>
+    <div class="row">
+        <div class="col-md-12" *ngIf="comingData.length === 0">
+              <h5 style="text-align: center">No data found</h5>
+          </div>
+        </div>
   <app-pagination [count]="length" (pageNumber)="assignPageNo($event)" (recordsPerPage)="assignRecordsPerPage($event)"></app-pagination>
   </div>
 <router-outlet></router-outlet>

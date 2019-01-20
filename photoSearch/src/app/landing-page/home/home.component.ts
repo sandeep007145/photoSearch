@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   private collectionSub: Subscription;
   itemsPerPage: any = 15;
   pageNo: any = 1;
-  length: any = 100;
+  length: any;
   collections = this.photosSerice.collections;
   selectStatus: Boolean = false;
   cancelBubble: Boolean = false;
@@ -42,12 +42,10 @@ export class HomeComponent implements OnInit {
   }
 
   geUser() {
-    let i = 0;
     this.collections.forEach(collection => {
       this.collectionSub = this.photosSerice.getCollection(collection.id, this.pageNo, this.itemsPerPage, this.type, 'latest')
         .subscribe(data => {
-          this.collections[i]['previews'] = data;
-          i++;
+          this.length = 100;
           console.log(data);
           this.comingData = data;
           const mapElement = this.comingData.map(element => ({

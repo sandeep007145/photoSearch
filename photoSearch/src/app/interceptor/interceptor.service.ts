@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpHandler, HttpEvent, HttpResponse, HttpErrorRespons
 import { HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { NgProgress } from '@ngx-progressbar/core';
 declare var toastr: any;
 
 
@@ -11,9 +12,11 @@ export class InterceptorService implements HttpInterceptor {
     expiredOrNot: any;
     nextApi: Boolean = false;
     constructor(
+        public ngProgress: NgProgress,
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        this.ngProgress.start();
         let token;
         const acess_token = null;
         if (acess_token) {
@@ -31,11 +34,13 @@ export class InterceptorService implements HttpInterceptor {
         return next.handle(token)
             .pipe(map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
+                    this.ngProgress.done();
                     return event;
                 }
             }))
             .pipe(catchError((err: HttpEvent<any>) => {
                 let message: string;
+                this.ngProgress.done();
                 if (err instanceof HttpErrorResponse) {
                     if (err.error && err.error.message) {
                         message = err.error.message;

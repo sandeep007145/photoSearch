@@ -13,7 +13,7 @@ export class ViewImagesComponent implements OnInit {
   private collectionSub: Subscription;
   itemsPerPage: any = 15;
   pageNo: any = 1;
-  length: any = 100;
+  length: any;
   collections = this.photosSerice.collections;
   type: String = '';
 
@@ -28,13 +28,11 @@ export class ViewImagesComponent implements OnInit {
   }
 
   geUser() {
-    let i = 0;
     this.collections.forEach(collection => {
       this.collectionSub = this.photosSerice.getCollection(collection.id, this.pageNo, this.itemsPerPage, this.type, 'latest')
         .subscribe(data => {
-          this.collections[i]['previews'] = data;
           this.comingData = data;
-          i++;
+          this.length = 100;
         });
     });
   }

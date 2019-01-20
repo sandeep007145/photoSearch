@@ -49,7 +49,7 @@
 
           &nbsp;
           Select All
-          <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+          <label style="cursor: pointer;" class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
               <input type="checkbox" [(ngModel)]="selectStatus"  (change)="selectAll()">
               <span></span>
             </label>
@@ -94,8 +94,12 @@
               </div>
             </div>
           </div>
+          <div class="row">
+              <div class="col-md-12" *ngIf="comingData.length === 0">
+                    <h5 style="text-align: center">No data found</h5>
+                </div>
+              </div>
         </div>
-        
       </div>
       <div class="modal-footer">
           <app-pagination [count]="length" (pageNumber)="assignPageNo($event)" (recordsPerPage)="assignRecordsPerPage($event)"></app-pagination>

@@ -8,6 +8,10 @@
     width: 100%;
     height: auto;
   }
+
+  .images {
+    height: 150px !important;
+  }
   
   .containerss .btn {
     position: absolute;
@@ -28,3 +32,58 @@
   .containerss .btn:hover {
     background-color: rgb(241, 90, 196);
   }
+
+  .btn.btn-brand {
+    color: #fff;
+    margin-top: 24px;
+}
+
+.search-text {
+    color: #323C47;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    line-height: 17px;
+}
+
+.display-col2 {
+    padding: 22px;
+    text-align: right;
+}
+
+
+.m-input-icon.m-input-icon--left .form-control {
+    padding-left: 2.8rem;
+    margin-top: 4px;
+}
+
+.fa-trash-o {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.search-box-align {
+    margin-top: 20px;
+}
+
+.btn.m-btn--air.btn-secondary {
+    box-shadow: none !important;
+    background-color: transparent;
+}
+
+.enable-disable  {
+    border-radius: 0px;
+    height: 37px;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+.email-hover{
+    cursor: pointer;
+    color: #5f57c3;
+}
+a:not([href]):not([tabindex]) {
+    color: inherit;
+    text-decoration: none;
+    color: #5f57c3;
+}

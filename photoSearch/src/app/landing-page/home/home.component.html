@@ -3,12 +3,77 @@
   <img src="./../../../assets/photo-1517299321609-52687d1bc55a.jpeg" alt="Snow" style="width:100%">
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Search Images</button>
 </div>
+
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Search Images</h4>
+        <button style="float: right;" data-dismiss="modal" routerLink="./view" class="btn btn-success enable-disable m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+          <span>
+            <span>
+             View Photos
+            </span>
+          </span>
+        </button>
+        &nbsp; &nbsp;
+    <form class="m-form m-form--fit m--margin-bottom-20" [formGroup]="queryParams">
+        <div class="row m--margin-bottom-20">
+          <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+            <label>Search</label>
+            <input class="form-control m-input" data-col-index="2"  placeholder="Search..." formControlName="search">
+            <span class="m-form__help">Search by photo name.</span>
+          </div>
+          <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                &nbsp;
+              <button class="btn btn-brand btn-success m-btn m-btn--icon" id="m_search" (click)="resultBasedOnParamsSearch()">
+                  <span>
+                    <span>Search</span>
+                  </span>
+                </button>
+                &nbsp;
+                &nbsp;
+            <button class="btn btn-brand btn-danger m-btn m-btn--icon" id="m_search" (click)="resultBasedOnParamsReset()">
+              <span>
+                <span>Reset</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+          <div class="col-md-12">
+      <label for="example_input_full_name">
+        Selected <strong>{{count}}</strong> Photos:</label> &nbsp;&nbsp;
+      <span>
+
+          &nbsp;
+          Select All
+          <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+              <input type="checkbox" [(ngModel)]="selectStatus"  (change)="selectAll()">
+              <span></span>
+            </label>
+            &nbsp;
+            &nbsp; 
+        <a class="btn btn-danger enable-disable  m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" (click)="deSelectAll()">
+          <span>
+            <span>
+              De-Select All
+            </span>
+          </span>
+        </a>
+        &nbsp; &nbsp;
+
+        <button class="btn btn-success enable-disable m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" (click)="postSelectedPhotos()">
+          <span>
+            <span>
+             Send Photos
+            </span>
+          </span>
+        </button>
+        &nbsp; &nbsp;
+      </span>
+    </div>
       </div>
       <div class="modal-body">
         <div class="containers">
@@ -16,8 +81,12 @@
           <div class="row">
           <div class="col-md-4" *ngFor="let p of comingData">
               <div class="thumbnail">
+                  <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                      <input type="checkbox" standAlone="true" [(ngModel)]="p.checked" value="{{p.checked}}" (change)="checkIfAllSelected($event);">
+                      <span></span>
+                    </label>
                 <a href="{{p.urls.small}}" target="_blank">
-                  <img src="{{p.urls.small}}" alt="{{p.user.username}}" style="width:100%">
+                  <img class="images" src="{{p.urls.small}}" alt="{{p.user.username}}" style="width:100%">
                   <div class="caption">
                     <p>{{p.user.username}}.</p>
                   </div>
@@ -35,3 +104,4 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>

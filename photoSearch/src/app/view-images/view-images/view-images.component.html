@@ -1,3 +1,17 @@
-<p>
-  view-images works!
-</p>
+<div class="containers container">
+    <h2 routerLink="/" style="cursor: pointer;">Image Gallery & Back</h2>
+    <div class="row">
+    <div class="col-md-4" style="padding: 20px" *ngFor="let p of comingData">
+        <div class="thumbnail">
+          <a href="{{p.urls.small}}" target="_blank">
+            <img class="images" src="{{p.urls.small}}" alt="{{p.user.username}}" style="width:100%">
+            <div class="caption">
+              <p>{{p.user.username}}.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  <app-pagination [count]="length" (pageNumber)="assignPageNo($event)" (recordsPerPage)="assignRecordsPerPage($event)"></app-pagination>
+  </div>
+<router-outlet></router-outlet>

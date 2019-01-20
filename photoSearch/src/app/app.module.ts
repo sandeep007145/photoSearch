@@ -16,8 +16,6 @@ import { PaginationComponent } from './pagination/pagination/pagination.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // FormsModule,
-    // ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

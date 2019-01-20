@@ -21,16 +21,24 @@ export class PhotosService {
     private http: HttpClient
   ) { }
 
-  getCollection(id: number, page, items, order = 'latest') {
+  getCollection(id: number, page,  items, search: String, order, ) {
     return this.http.get(this.endpoint +
       '/collections/' + id +
       '/photos?client_id=' + this.appID +
       '&page=' + page +
       '&per_page=' + items +
+       '&query=' + search +
       '&order_by=' + order, {
       headers: {
         'Expires': '10000000'
       }
+    });
+  }
+
+  sendCollection(id: number) {
+    return this.http.post(this.endpoint +
+      '/collections/' + id +
+      '/photos?client_id=' + this.appID, {
     });
   }
 
